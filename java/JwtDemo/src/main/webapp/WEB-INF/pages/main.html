@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的主页</title>
+</head>
+<body>
+                我的主页
+<button type="button" id="getUserInfo">我的信息</button>
+<br/>
+<button type="button" id="loginout">退出</button>
+<br/>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script>
+    $("#getUserInfo").on('click', function (e) {
+        var loginName=localStorage.getItem('loginname');
+//        alert(loginName);
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            url: "/JwtDemo/getUserInfo/"+loginName,
+            headers: {
+                token: localStorage.getItem('token')               //附带token进行验证
+//                  token: sessionStorage.token
+            },
+            success: function (resp) {
+//                alert(resp.msg);
+                if (resp.state=="success") {
+//                    alert(resp.msg);
+                    $('body').append(JSON.stringify(resp.msg));
+                }
+            }
+        });
+    });
+
+    $("#loginout").on("click", function () {
+        localStorage.removeItem("token");
+//        sessionStorage.clear();
+        location.href = "login.html";
+    });
+</script>
+
+</body>
+</html>

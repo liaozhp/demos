@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+</head>
+<style>
+    .content {
+        font-size: 14px;
+        margin: 0;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .item {
+        margin: 10px;
+    }
+
+    .item input {
+        width: 200px;
+    }
+</style>
+<body>
+<div class="content">
+    <div class="item">
+        <label for="userName">用户名：</label><input type="text" name="userName" id="userName" placeholder="请输入用户名"
+                                                 value="admin" autocomplete="off"/>
+    </div>
+    <div class="item">
+        <label for="password">密码：</label><input type="password" name="password" id="password" placeholder="请输入密码"
+                                                value="123" autocomplete="off"/>
+    </div>
+    <div class="item">
+        <button type="submit" id="login">登陆</button>
+    </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script>
+    $('#login').on('click', function (e) {
+        var userName = $.trim($('#userName').val());
+        var password = $.trim($('#password').val());
+        var data={"loginname": userName, "loginpwd": password};
+        localStorage.setItem('loginname',userName);
+        $.ajax({
+            type: "post",
+            url: "/JwtDemo/userLogin",
+            data: JSON.stringify(data),
+            contentType: "application/json;charset=utf-8",
+            success: function (resp) {
+//                alert(JSON.stringify(data));
+                alert(resp.msg);
+                if (resp.state=="success") {
+                    //将token存在本地存储，然后跳转到主页面
+                    localStorage.setItem('token', resp.msg);
+//                    sessionStorage.loginame=userName;
+//                    sessionStorage.token=resp.msg;
+                    location.href = "main.html";
+                }
+            }
+        });
+
+
+    })
+
+</script>
+</body>
+</html>

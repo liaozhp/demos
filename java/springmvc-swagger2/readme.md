@@ -37,7 +37,7 @@ swagger是一个方便快捷的API生成工具，swagger2是swagger项目的最�
     <!--swagger end-->
   </dependencies>
 ```
-##配置swagger2
+## 配置swagger2
 新建一个swagger2配置类
 ```
 package com.springmvc.config;
@@ -85,14 +85,14 @@ public class Swagger2Config {
 
 }
 ```
-##集成springmvc
+## 集成springmvc
  DispatcherServlet的xml配置如下：
 ```
  <!--映射swagger2静态资源-->
  <mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
  <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
 ```
-##swagger-ui 展示
+## swagger-ui 展示
 启动项目后，访问地址http://host:port/projectName/swagger-ui.html,
 即可看到生成的API页面，同时通过地址http://host:port/projectName/v2/api-docs
 可得到API的json数据。

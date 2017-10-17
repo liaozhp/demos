@@ -4,8 +4,8 @@ json web token(JWT)是一个轻量级的用于身份验证的框架，基于jwt�
 可参考[什么是JWT](http://www.jianshu.com/p/576dbf44b2ae)，JWT项目
 可参见[JJWT](https://github.com/jwtk/jjwt)。
 ## 开发环境
-servlet3.1:需支持servlet3.0语法
-spring4.3.1:支持getMapping等语法
+servlet3.1:需支持servlet3.0语法;  
+spring4.3.1:支持getMapping等语法.
 ## 添加jwt依赖
 ```
     <!--java json web token dependency-->

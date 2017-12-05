@@ -8,6 +8,32 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/applicationContext.xml</param-value>
   </context-param>
+  <!--跨域资源处理filter-->
+  <filter>
+    <filter-name>CORS</filter-name>
+    <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+    <init-param>
+      <param-name>cors.allowOrigin</param-name>
+      <param-value>*</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.supportsCredentials</param-name>
+      <param-value>false</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.supportedHeaders</param-name>
+      <param-value>accept, authorization, origin</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.supportedMethods</param-name>
+      <param-value>GET, POST, HEAD, OPTIONS</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>CORS</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -24,4 +50,5 @@
     <!--注意此处不要设置为/*,否则servert将拦截.jsp结尾的url-->
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
 </web-app>
